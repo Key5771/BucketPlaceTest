@@ -15,6 +15,10 @@
 		EA648AF7257CB40E00C29061 /* BucketPlaceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA648AF6257CB40E00C29061 /* BucketPlaceUITests.swift */; };
 		EA648B13257CB47D00C29061 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA648B11257CB47D00C29061 /* ListViewController.swift */; };
 		EA648B14257CB47D00C29061 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA648B12257CB47D00C29061 /* ListViewController.xib */; };
+		EA648B20257CB6C900C29061 /* ListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA648B1F257CB6C900C29061 /* ListAPI.swift */; };
+		EA648B29257CB7AC00C29061 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA648B28257CB7AC00C29061 /* Network.swift */; };
+		EA648B32257CD26100C29061 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA648B30257CD26100C29061 /* ListCollectionViewCell.swift */; };
+		EA648B33257CD26100C29061 /* ListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA648B31257CD26100C29061 /* ListCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		EA648AF8257CB40E00C29061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA648B11257CB47D00C29061 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		EA648B12257CB47D00C29061 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		EA648B1F257CB6C900C29061 /* ListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAPI.swift; sourceTree = "<group>"; };
+		EA648B28257CB7AC00C29061 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		EA648B30257CD26100C29061 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA648B31257CD26100C29061 /* ListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,8 @@
 		EA648AD3257CB40900C29061 /* BucketPlace */ = {
 			isa = PBXGroup;
 			children = (
+				EA648B27257CB79C00C29061 /* Network */,
+				EA648B1E257CB6A300C29061 /* Model */,
 				EA648B10257CB46B00C29061 /* View */,
 				EA648AD4257CB40900C29061 /* AppDelegate.swift */,
 				EA648AD6257CB40900C29061 /* SceneDelegate.swift */,
@@ -132,8 +142,26 @@
 			children = (
 				EA648B11257CB47D00C29061 /* ListViewController.swift */,
 				EA648B12257CB47D00C29061 /* ListViewController.xib */,
+				EA648B30257CD26100C29061 /* ListCollectionViewCell.swift */,
+				EA648B31257CD26100C29061 /* ListCollectionViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		EA648B1E257CB6A300C29061 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA648B1F257CB6C900C29061 /* ListAPI.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA648B27257CB79C00C29061 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EA648B28257CB7AC00C29061 /* Network.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +269,7 @@
 			files = (
 				EA648AE1257CB40D00C29061 /* LaunchScreen.storyboard in Resources */,
 				EA648ADE257CB40D00C29061 /* Assets.xcassets in Resources */,
+				EA648B33257CD26100C29061 /* ListCollectionViewCell.xib in Resources */,
 				EA648B14257CB47D00C29061 /* ListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,8 +295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA648B32257CD26100C29061 /* ListCollectionViewCell.swift in Sources */,
+				EA648B29257CB7AC00C29061 /* Network.swift in Sources */,
 				EA648AD5257CB40900C29061 /* AppDelegate.swift in Sources */,
 				EA648B13257CB47D00C29061 /* ListViewController.swift in Sources */,
+				EA648B20257CB6C900C29061 /* ListAPI.swift in Sources */,
 				EA648AD7257CB40900C29061 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

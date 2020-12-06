@@ -19,18 +19,25 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ListViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khn-7Y-WR3">
-                    <rect key="frame" x="137.5" y="437.5" width="139" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oK1-oy-EaL">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rnf-7x-oVQ">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <accessibility key="accessibilityConfiguration" identifier="ListViewController"/>
             <constraints>
-                <constraint firstItem="Khn-7Y-WR3" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="4yB-c8-QTd"/>
-                <constraint firstItem="Khn-7Y-WR3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dA5-fj-vpP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oK1-oy-EaL" secondAttribute="bottom" id="Pl9-DU-wFt"/>
+                <constraint firstItem="oK1-oy-EaL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="asy-2V-Luj"/>
+                <constraint firstItem="oK1-oy-EaL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d6K-tt-7bu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oK1-oy-EaL" secondAttribute="trailing" id="vea-6X-zAS"/>
             </constraints>
             <point key="canvasLocation" x="97" y="95"/>
         </view>

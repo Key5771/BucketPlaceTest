@@ -9,9 +9,15 @@ import UIKit
 
 class ListViewController: UIViewController {
 
+    let baseUrl = "https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/cards/page_1.json"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("hello world")
+        NetworkRequest.shared.getData(baseUrl: baseUrl) { (response: [ListAPI]) in
+            print("response: \(response)")
+        }
         // Do any additional setup after loading the view.
     }
 
