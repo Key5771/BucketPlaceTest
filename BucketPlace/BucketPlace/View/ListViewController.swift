@@ -90,10 +90,16 @@ extension ListViewController: UICollectionViewDataSource {
         
         urlString += "\(Int(UIScreen.main.bounds.width))/"
         urlString += "\(Int(UIScreen.main.bounds.height / 2))"
-        guard let url = URL(string: urlString), let imageData = try? Data(contentsOf: url) else {
-            fatalError("imageURL is nil")
+        
+        DispatchQueue.global().async {
+            guard let url = URL(string: urlString), let imageData = try? Data(contentsOf: url) else {
+                fatalError("imageURL is nil")
+            }
+            
+            DispatchQueue.main.async {
+                item.imageView.image = UIImage(data: imageData)
+            }
         }
-        item.imageView.image = UIImage(data: imageData)
         
         return item
     }
