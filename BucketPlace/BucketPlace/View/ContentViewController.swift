@@ -119,8 +119,10 @@ class ContentViewController: UIViewController {
         
         contentImageView.center = CGPoint(x: changedX, y: changedY)
         
-        self.view.isOpaque = true
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+        UIView.animate(withDuration: 0.2) {
+            self.view.isOpaque = true
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        }
         
         panGestureRecognizer.setTranslation(CGPoint.zero, in: contentImageView)
         
