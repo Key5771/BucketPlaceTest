@@ -56,6 +56,13 @@ class ListViewController: UIViewController {
 extension ListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("indexPath: \(indexPath.row)")
+        
+        let viewController = ContentViewController()
+        let data = contentInfo[indexPath.row]
+        viewController.desc = data.description
+        viewController.imageUrl = data.image_url
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 
@@ -73,7 +80,17 @@ extension ListViewController: UICollectionViewDataSource {
         let infoData = contentInfo[indexPath.row]
         
         item.descriptionLabel.text = infoData.description
-        guard let urlString = infoData.image_url, let url = URL(string: urlString), let imageData = try? Data(contentsOf: url) else {
+        
+        guard var urlString = infoData.image_url else {
+            fatalError()
+        }
+        for _ in 0..<7 {
+            urlString.removeLast()
+        }
+        
+        urlString += "\(Int(UIScreen.main.bounds.width))/"
+        urlString += "\(Int(UIScreen.main.bounds.height / 2))"
+        guard let url = URL(string: urlString), let imageData = try? Data(contentsOf: url) else {
             fatalError("imageURL is nil")
         }
         item.imageView.image = UIImage(data: imageData)
@@ -100,6 +117,9 @@ extension ListViewController: UICollectionViewDataSourcePrefetching {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
+// TODO: - Cell의 사이즈가 내용의 크기에 따라 동적으로 변하도록 해야함
+// TODO: - 내용이 많은 경우 이미지가 양옆에서 떨어지는 현상 존재 => 이미지를 불러올 때 사이즈를 지정해주거나, 동적 Cell height를 통해 해결해야 할 듯.
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height / 1.3)
