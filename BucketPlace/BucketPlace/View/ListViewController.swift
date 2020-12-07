@@ -61,7 +61,7 @@ extension ListViewController: UICollectionViewDelegate {
         let data = contentInfo[indexPath.row]
         viewController.desc = data.description
         viewController.imageUrl = data.image_url
-        viewController.modalPresentationStyle = .fullScreen
+        viewController.modalPresentationStyle = .custom
         self.present(viewController, animated: true, completion: nil)
     }
 }

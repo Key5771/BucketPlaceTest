@@ -10,6 +10,7 @@ import UIKit
 class ContentViewController: UIViewController {
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     var imageUrl: String?
     var desc: String?
@@ -109,5 +110,32 @@ class ContentViewController: UIViewController {
         contentImageView.transform = contentImageView.transform.scaledBy(x: sender.scale, y: sender.scale)
         
         sender.scale = 1.0
+    }
+    
+    @IBAction func panAction(_ sender: Any) {
+        let transition = panGestureRecognizer.translation(in: contentImageView)
+        let changedX = contentImageView.center.x + transition.x
+        let changedY = contentImageView.center.y + transition.y
+        
+        contentImageView.center = CGPoint(x: changedX, y: changedY)
+        
+        self.view.isOpaque = true
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+        
+        panGestureRecognizer.setTranslation(CGPoint.zero, in: contentImageView)
+        
+        let velocity = panGestureRecognizer.velocity(in: contentImageView)
+        if abs(velocity.y) > abs(velocity.x) {
+            if abs(contentImageView.center.y - self.view.center.y) > 150 {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+        if panGestureRecognizer.state == .ended {
+            UIView.animate(withDuration: 0.2) {
+                self.view.backgroundColor = .black
+                self.contentImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+            }
+        }
     }
 }
