@@ -9,6 +9,9 @@ import UIKit
 
 class ListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var orderView: UIView!
+    @IBOutlet weak var spaceView: UIView!
+    @IBOutlet weak var residenceView: UIView!
     
     var baseUrl = "https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/cards/page_1.json"
     var contentInfo: [ListAPI] = []
@@ -28,6 +31,7 @@ class ListViewController: UIViewController {
     }
     
     private func setupUI() {
+        // collectionView
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
@@ -36,6 +40,12 @@ class ListViewController: UIViewController {
         collectionView.register(nibName, forCellWithReuseIdentifier: "ListCollectionViewItem")
         
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        
+        // sortButton View
+        orderView.layer.cornerRadius = 4
+        spaceView.layer.cornerRadius = 4
+        residenceView.layer.cornerRadius = 4
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -49,14 +59,32 @@ class ListViewController: UIViewController {
     
     @IBAction func orderAction(_ sender: Any) {
         print("order sort")
+        let sortVC = SortViewController()
+        let order = Order()
+        sortVC.sortTitle = order.sortName
+        sortVC.sortArr = [order.recent, order.best, order.popular]
+        sortVC.modalPresentationStyle = .overFullScreen
+        self.present(sortVC, animated: true, completion: nil)
     }
     
     @IBAction func spaceAction(_ sender: Any) {
         print("space order")
+        let vc = SortViewController()
+        let space = Space()
+        vc.sortTitle = space.sortName
+        vc.sortArr = [space.livingroom, space.bedroom, space.kitchen, space.bathroom]
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func residenceAction(_ sender: Any) {
         print("residence order")
+        let vc = SortViewController()
+        let residence = Residence()
+        vc.sortTitle = residence.sortName
+        vc.sortArr = [residence.apartment, residence.villa, residence.house, residence.office]
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
     }
 }
 
