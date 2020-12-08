@@ -12,6 +12,7 @@ class ListViewController: UIViewController {
     
     var baseUrl = "https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/cards/page_1.json"
     var contentInfo: [ListAPI] = []
+    let flowLayout = UICollectionViewFlowLayout()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +34,17 @@ class ListViewController: UIViewController {
         
         let nibName = UINib(nibName: "ListCollectionViewCell", bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: "ListCollectionViewItem")
+        
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.collectionViewLayout.invalidateLayout()
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { _ in
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
+        }, completion: nil)
     }
     
     @IBAction func orderAction(_ sender: Any) {
@@ -88,8 +96,8 @@ extension ListViewController: UICollectionViewDataSource {
             urlString.removeLast()
         }
         
-        urlString += "\(Int(UIScreen.main.bounds.width))/"
-        urlString += "\(Int(UIScreen.main.bounds.height / 2))"
+        urlString += "\(Int(self.collectionView.bounds.width))/"
+        urlString += "\(Int(self.collectionView.bounds.height / 2))"
         
         DispatchQueue.global().async {
             guard let url = URL(string: urlString), let imageData = try? Data(contentsOf: url) else {
@@ -128,6 +136,13 @@ extension ListViewController: UICollectionViewDataSourcePrefetching {
 // TODO: - 내용이 많은 경우 이미지가 양옆에서 떨어지는 현상 존재 => 이미지를 불러올 때 사이즈를 지정해주거나, 동적 Cell height를 통해 해결해야 할 듯.
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height / 1.3)
+        let sectionInset = flowLayout.sectionInset
+        let referenceHeight: CGFloat = 500
+        let referenceWidth = self.view.frame.width
+                    - sectionInset.left
+                    - sectionInset.right
+                    - collectionView.contentInset.left
+                    - collectionView.contentInset.right
+        return CGSize(width: referenceWidth, height: referenceHeight)
     }
 }

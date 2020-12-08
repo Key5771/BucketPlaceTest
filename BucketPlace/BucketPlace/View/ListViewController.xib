@@ -181,11 +181,11 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oK1-oy-EaL" secondAttribute="bottom" id="Pl9-DU-wFt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bqb-rL-72l" secondAttribute="trailing" id="UYD-Kd-3Pg"/>
                 <constraint firstItem="oK1-oy-EaL" firstAttribute="top" secondItem="Bqb-rL-72l" secondAttribute="bottom" constant="20" id="asy-2V-Luj"/>
-                <constraint firstItem="oK1-oy-EaL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d6K-tt-7bu"/>
+                <constraint firstItem="oK1-oy-EaL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="d6K-tt-7bu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7rS-6N-zYd" secondAttribute="trailing" id="lbt-IT-gza"/>
                 <constraint firstItem="Bqb-rL-72l" firstAttribute="top" secondItem="7rS-6N-zYd" secondAttribute="bottom" id="oNH-Jn-g61"/>
                 <constraint firstItem="7rS-6N-zYd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ro2-1D-ewb"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oK1-oy-EaL" secondAttribute="trailing" id="vea-6X-zAS"/>
+                <constraint firstAttribute="trailing" secondItem="oK1-oy-EaL" secondAttribute="trailing" id="vea-6X-zAS"/>
             </constraints>
             <point key="canvasLocation" x="95.652173913043484" y="94.419642857142847"/>
         </view>

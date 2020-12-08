@@ -128,7 +128,7 @@ class ContentViewController: UIViewController {
         
         let velocity = panGestureRecognizer.velocity(in: contentImageView)
         if abs(velocity.y) > abs(velocity.x) {
-            if abs(contentImageView.center.y - self.view.center.y) > 150 {
+            if abs(contentImageView.center.y - self.view.center.y) > 200 {
                 self.dismiss(animated: true, completion: nil)
             }
         }
