@@ -98,6 +98,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA642ACF257F778D002F8DE4 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				EA648B11257CB47D00C29061 /* ListViewController.swift */,
+				EA648B12257CB47D00C29061 /* ListViewController.xib */,
+				EA648B30257CD26100C29061 /* ListCollectionViewCell.swift */,
+				EA648B31257CD26100C29061 /* ListCollectionViewCell.xib */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		EA642AD0257F7796002F8DE4 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				EA642AA8257DF56D002F8DE4 /* ContentViewController.swift */,
+				EA642AA9257DF56D002F8DE4 /* ContentViewController.xib */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		EA648AC8257CB40900C29061 = {
 			isa = PBXGroup;
 			children = (
@@ -154,16 +174,12 @@
 		EA648B10257CB46B00C29061 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EA648B11257CB47D00C29061 /* ListViewController.swift */,
-				EA648B12257CB47D00C29061 /* ListViewController.xib */,
-				EA648B30257CD26100C29061 /* ListCollectionViewCell.swift */,
-				EA648B31257CD26100C29061 /* ListCollectionViewCell.xib */,
-				EA642AA8257DF56D002F8DE4 /* ContentViewController.swift */,
-				EA642AA9257DF56D002F8DE4 /* ContentViewController.xib */,
 				EA642AB9257F42D5002F8DE4 /* SortTableViewCell.swift */,
 				EA642ABA257F42D5002F8DE4 /* SortTableViewCell.xib */,
 				EA642AC3257F55E4002F8DE4 /* SortViewController.swift */,
 				EA642AC4257F55E4002F8DE4 /* SortViewController.xib */,
+				EA642AD0257F7796002F8DE4 /* Content */,
+				EA642ACF257F778D002F8DE4 /* List */,
 			);
 			path = View;
 			sourceTree = "<group>";
