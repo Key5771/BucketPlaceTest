@@ -21,4 +21,8 @@ class ListCollectionViewCell: UICollectionViewCell {
         layoutAttributes.bounds.size.height = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         return layoutAttributes
     }
+    
+    override func prepareForReuse() {
+        imageView.image = UIImage(named: "noImage")
+    }
 }
