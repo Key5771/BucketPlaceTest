@@ -12,6 +12,7 @@ class SortViewController: UIViewController {
     @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var emptyView: UIView!
     
     var sortTitle: String = ""
     var sortArr: [String] = []
@@ -39,6 +40,11 @@ class SortViewController: UIViewController {
     @IBAction func tapAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func okButtonClick(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension SortViewController: UITableViewDelegate {
