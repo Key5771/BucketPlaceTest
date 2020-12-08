@@ -118,6 +118,17 @@
 			path = Content;
 			sourceTree = "<group>";
 		};
+		EA642AD3257F7817002F8DE4 /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+				EA642AB9257F42D5002F8DE4 /* SortTableViewCell.swift */,
+				EA642ABA257F42D5002F8DE4 /* SortTableViewCell.xib */,
+				EA642AC3257F55E4002F8DE4 /* SortViewController.swift */,
+				EA642AC4257F55E4002F8DE4 /* SortViewController.xib */,
+			);
+			path = Sort;
+			sourceTree = "<group>";
+		};
 		EA648AC8257CB40900C29061 = {
 			isa = PBXGroup;
 			children = (
@@ -174,10 +185,7 @@
 		EA648B10257CB46B00C29061 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EA642AB9257F42D5002F8DE4 /* SortTableViewCell.swift */,
-				EA642ABA257F42D5002F8DE4 /* SortTableViewCell.xib */,
-				EA642AC3257F55E4002F8DE4 /* SortViewController.swift */,
-				EA642AC4257F55E4002F8DE4 /* SortViewController.xib */,
+				EA642AD3257F7817002F8DE4 /* Sort */,
 				EA642AD0257F7796002F8DE4 /* Content */,
 				EA642ACF257F778D002F8DE4 /* List */,
 			);
