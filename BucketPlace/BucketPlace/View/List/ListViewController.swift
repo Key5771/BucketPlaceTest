@@ -59,20 +59,20 @@ class ListViewController: UIViewController {
     
     @IBAction func orderAction(_ sender: Any) {
         print("order sort")
-        let sortVC = SortViewController()
+        let vc = SortViewController()
         let order = Order()
-        sortVC.sortTitle = order.sortName
-        sortVC.sortArr = [order.recent, order.best, order.popular]
-        sortVC.modalPresentationStyle = .overFullScreen
-        self.present(sortVC, animated: true, completion: nil)
+        vc.sortTitle = order.sortName.0
+        vc.sortArr = [order.recent.0, order.best.0, order.popular.0]
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func spaceAction(_ sender: Any) {
         print("space order")
         let vc = SortViewController()
         let space = Space()
-        vc.sortTitle = space.sortName
-        vc.sortArr = [space.livingroom, space.bedroom, space.kitchen, space.bathroom]
+        vc.sortTitle = space.sortName.0
+        vc.sortArr = [space.livingroom.0, space.bedroom.0, space.kitchen.0, space.bathroom.0]
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
@@ -81,8 +81,8 @@ class ListViewController: UIViewController {
         print("residence order")
         let vc = SortViewController()
         let residence = Residence()
-        vc.sortTitle = residence.sortName
-        vc.sortArr = [residence.apartment, residence.villa, residence.house, residence.office]
+        vc.sortTitle = residence.sortName.0
+        vc.sortArr = [residence.apartment.0, residence.villa.0, residence.house.0, residence.office.0]
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
