@@ -10,14 +10,19 @@ import Foundation
 class NetworkRequest {
     static let shared: NetworkRequest = NetworkRequest()
     
-    func getData<Response: Decodable>(baseUrl: String, completion handler: @escaping (Response) -> Void) {
+    func getData<Response: Decodable>(baseUrl: String, params: [URLQueryItem]? = nil, completion handler: @escaping (Response) -> Void) {
         let session = URLSession.shared
         
-        guard let url = URL(string: "\(baseUrl)") else {
+        guard var url = URLComponents(string: "\(baseUrl)") else {
             fatalError("URL is nil")
         }
+        url.queryItems = params
         
-        var request = URLRequest(url: url)
+        guard let requestUrl = url.url else {
+            fatalError("requestURL is nil")
+        }
+        
+        var request = URLRequest(url: (requestUrl))
         request.httpMethod = "get"
         
         let dataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
