@@ -12,7 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContentViewController" customModule="BucketPlace" customModuleProvider="target">
             <connections>
                 <outlet property="contentImageView" destination="0Yh-tp-6um" id="bgi-91-BVt"/>
-                <outlet property="descriptionLabel" destination="ON9-3v-wR4" id="vaZ-Sn-qyA"/>
+                <outlet property="descriptionTextView" destination="oXN-nO-AhE" id="Tjt-NW-VIc"/>
+                <outlet property="descriptionTextViewBottomAnchor" destination="Gol-gV-4BA" id="Dvi-db-Qyz"/>
+                <outlet property="descriptionTextViewTopAnchor" destination="PfN-zf-psB" id="XNF-bv-7pF"/>
                 <outlet property="panGestureRecognizer" destination="bw8-m7-Uvf" id="qBj-aX-Lkt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,25 +24,37 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Yh-tp-6um">
-                    <rect key="frame" x="87" y="384" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Yh-tp-6um">
+                    <rect key="frame" x="0.0" y="76" width="414" height="682"/>
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="bw8-m7-Uvf" appends="YES" id="KHk-Au-8k0"/>
                     </connections>
                 </imageView>
-                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ON9-3v-wR4">
-                    <rect key="frame" x="167" y="758" width="117" height="82"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <gestureRecognizers/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oXN-nO-AhE">
+                    <rect key="frame" x="16" y="766" width="382" height="80"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="WoM-ov-764"/>
+                    </constraints>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oXN-nO-AhE" secondAttribute="trailing" constant="16" id="5IH-uW-w8l"/>
+                <constraint firstItem="0Yh-tp-6um" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="FUe-Vx-iTA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="oXN-nO-AhE" secondAttribute="bottom" priority="750" constant="32" id="Gol-gV-4BA"/>
+                <constraint firstItem="oXN-nO-AhE" firstAttribute="top" secondItem="0Yh-tp-6um" secondAttribute="bottom" constant="8" id="PfN-zf-psB"/>
+                <constraint firstItem="0Yh-tp-6um" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XPp-ZU-B0R"/>
+                <constraint firstItem="oXN-nO-AhE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Y3f-X4-JrH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="oXN-nO-AhE" secondAttribute="bottom" constant="16" id="iu4-IT-eIP"/>
+                <constraint firstItem="0Yh-tp-6um" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="lxp-3f-RC4"/>
+            </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="82.366071428571431"/>
         </view>
         <panGestureRecognizer minimumNumberOfTouches="1" id="bw8-m7-Uvf">
@@ -50,6 +64,9 @@
         </panGestureRecognizer>
     </objects>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,8 +9,10 @@ import UIKit
 
 class ContentViewController: UIViewController {
     @IBOutlet weak var contentImageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
+    @IBOutlet weak var descriptionTextViewBottomAnchor: NSLayoutConstraint!
+    @IBOutlet weak var descriptionTextViewTopAnchor: NSLayoutConstraint!
     
     var imageUrl: String?
     var desc: String?
@@ -38,10 +40,6 @@ class ContentViewController: UIViewController {
     
     private func setupUI() {
         // contentImageView
-        contentImageView.translatesAutoresizingMaskIntoConstraints = false
-        contentImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        contentImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
         updateLayout()
         
         // descriptionLabel
@@ -49,15 +47,9 @@ class ContentViewController: UIViewController {
             fatalError("desc is nil")
         }
         
-        descriptionLabel.text = desc
-        descriptionLabel.textColor = .white
-        self.view.addSubview(descriptionLabel)
-        
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        descriptionLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        descriptionLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64).isActive = true
+        descriptionTextView.text = desc
+        descriptionTextView.backgroundColor = .clear
+        descriptionTextView.textColor = .white
     }
     
     private func updateLayout() {
@@ -66,7 +58,7 @@ class ContentViewController: UIViewController {
         
         // portrait mode
         if width < height {
-            let newHeight = height / 3
+            let newHeight = width
             
             guard var urlString = imageUrl else { return }
             for _ in 0..<7 {
@@ -76,31 +68,42 @@ class ContentViewController: UIViewController {
             urlString += "\(width)/"
             urlString += "\(newHeight)"
             
-            guard let url = URL(string: urlString),
-                  let imageData = try? Data(contentsOf: url) else {
-                fatalError("Image Data is nil")
+            DispatchQueue.global().async {
+                guard let url = URL(string: urlString),
+                      let imageData = try? Data(contentsOf: url) else {
+                    fatalError("Image Data is nil")
+                }
+                
+                DispatchQueue.main.async {
+                    self.contentImageView.image = UIImage(data: imageData)
+                    self.view.addSubview(self.contentImageView)
+                }
             }
-            
-            contentImageView.image = UIImage(data: imageData)
-            self.view.addSubview(contentImageView)
         } else { // landscape mode
-            let newWidth = Int(width * CGFloat(16.0 / 9.0))
+            let newWidth = width
+            let newHeight = height - descriptionTextView.frame.height
+                - descriptionTextViewTopAnchor.constant
+                - descriptionTextViewBottomAnchor.constant
             
             guard var urlString = imageUrl else { return }
             for _ in 0..<7 {
                 urlString.removeLast()
             }
-            
+
             urlString += "\(newWidth)/"
-            urlString += "\(height)"
+            urlString += "\(newHeight)"
             
-            guard let url = URL(string: urlString),
-                  let imageData = try? Data(contentsOf: url) else {
-                fatalError("Image Data is nil")
+            DispatchQueue.global().async {
+                guard let url = URL(string: urlString),
+                      let imageData = try? Data(contentsOf: url) else {
+                    fatalError("Image Data is nil")
+                }
+                
+                DispatchQueue.main.async {
+                    self.contentImageView.image = UIImage(data: imageData)
+                    self.view.addSubview(self.contentImageView)
+                }
             }
-            
-            contentImageView.image = UIImage(data: imageData)
-            self.view.addSubview(contentImageView)
         }
         
         self.view.layoutIfNeeded()
@@ -122,6 +125,7 @@ class ContentViewController: UIViewController {
         UIView.animate(withDuration: 0.2) {
             self.view.isOpaque = true
             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+            self.descriptionTextView.isHidden = true
         }
         
         panGestureRecognizer.setTranslation(CGPoint.zero, in: contentImageView)
@@ -137,6 +141,7 @@ class ContentViewController: UIViewController {
             UIView.animate(withDuration: 0.2) {
                 self.view.backgroundColor = .black
                 self.contentImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+                self.descriptionTextView.isHidden = false
             }
         }
     }
