@@ -15,6 +15,7 @@ class ListViewController: UIViewController {
     
     var baseUrl = "https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/cards/page_1.json"
     var contentInfo: [ListAPI] = []
+    var filterInfo: [(String, [String: String])] = []
     let flowLayout = UICollectionViewFlowLayout()
     
     override func viewDidLoad() {
@@ -28,6 +29,11 @@ class ListViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        print("filterInfo: \(filterInfo)")
     }
     
     private func setupUI() {
@@ -58,32 +64,27 @@ class ListViewController: UIViewController {
     }
     
     @IBAction func orderAction(_ sender: Any) {
-        print("order sort")
         let vc = SortViewController()
-        let order = Order()
-        vc.sortTitle = order.sortName.0
-        vc.sortArr = [order.recent.0, order.best.0, order.popular.0]
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func spaceAction(_ sender: Any) {
-        print("space order")
-        let vc = SortViewController()
-        let space = Space()
-        vc.sortTitle = space.sortName.0
-        vc.sortArr = [space.livingroom.0, space.bedroom.0, space.kitchen.0, space.bathroom.0]
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func residenceAction(_ sender: Any) {
-        print("residence order")
-        let vc = SortViewController()
-        let residence = Residence()
-        vc.sortTitle = residence.sortName.0
-        vc.sortArr = [residence.apartment.0, residence.villa.0, residence.house.0, residence.office.0]
-        vc.modalPresentationStyle = .overFullScreen
+        
+        guard let button = sender as? UIButton else { return }
+        if button.tag == 1 {
+            let order = Order()
+            vc.sortTitle = order.sortName.0
+            vc.sortArr = [order.recent, order.best, order.popular]
+            vc.type = order
+        } else if button.tag == 2 {
+            let space = Space()
+            vc.sortTitle = space.sortName.0
+            vc.sortArr = [space.livingroom, space.bedroom, space.bathroom, space.kitchen]
+            vc.type = space
+        } else {
+            let residence = Residence()
+            vc.sortTitle = residence.sortName.0
+            vc.sortArr = [residence.apartment, residence.villa, residence.house, residence.office]
+            vc.type = residence
+        }
+        vc.delegate = self
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
 }
@@ -172,5 +173,29 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
                     - collectionView.contentInset.left
                     - collectionView.contentInset.right
         return CGSize(width: referenceWidth, height: referenceHeight)
+    }
+}
+
+extension ListViewController: PassDataDelegate {
+    // order, space, residence에 해당하는 값 하나만을 갖기 위한 알고리즘.
+    func passData(data: (String, [String: String])) {
+        if !filterInfo.contains(where: { (result) -> Bool in
+            if result.1.keys != data.1.keys {
+                return false
+            }
+            return true
+        }) {
+            filterInfo.append(data)
+        } else {
+            if let index = filterInfo.firstIndex(where: { (result) -> Bool in
+                if result.1.keys == data.1.keys {
+                    return true
+                }
+                return false
+            }) {
+                filterInfo.remove(at: index)
+                filterInfo.append(data)
+            }
+        }
     }
 }

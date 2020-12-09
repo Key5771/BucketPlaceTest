@@ -18,7 +18,9 @@ class SortTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        if selected {
+            sortLabel.textColor = UIColor(red: 53 / 255, green: 197 / 255, blue: 240 / 255, alpha: 1)
+        }
     }
     
 }

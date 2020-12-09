@@ -52,7 +52,7 @@
                                         <color key="titleColor" systemColor="linkColor"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mF-Hz-AKi">
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mF-Hz-AKi">
                                     <rect key="frame" x="0.0" y="0.0" width="56" height="32"/>
                                     <connections>
                                         <action selector="orderAction:" destination="-1" eventType="touchUpInside" id="5VV-1F-umL"/>
@@ -89,11 +89,11 @@
                                     <rect key="frame" x="38" y="11" width="10" height="10"/>
                                     <state key="normal" image="down"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Br-of-n9l">
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Br-of-n9l">
                                     <rect key="frame" x="0.0" y="0.0" width="56" height="32"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <connections>
-                                        <action selector="spaceAction:" destination="-1" eventType="touchUpInside" id="EU4-TT-8xK"/>
+                                        <action selector="orderAction:" destination="-1" eventType="touchUpInside" id="frP-2g-Ibw"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -127,10 +127,10 @@
                                     <rect key="frame" x="63" y="11" width="11" height="10"/>
                                     <state key="normal" image="down"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-9d-h4p">
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hf-9d-h4p">
                                     <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
                                     <connections>
-                                        <action selector="residenceAction:" destination="-1" eventType="touchUpInside" id="TZo-Fl-596"/>
+                                        <action selector="orderAction:" destination="-1" eventType="touchUpInside" id="SD3-BT-mww"/>
                                     </connections>
                                 </button>
                             </subviews>

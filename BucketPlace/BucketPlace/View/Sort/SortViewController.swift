@@ -15,7 +15,9 @@ class SortViewController: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     
     var sortTitle: String = ""
-    var sortArr: [String] = []
+    var sortArr: [(String, [String: String])] = []
+    var delegate: PassDataDelegate?
+    var type: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +51,9 @@ class SortViewController: UIViewController {
 
 extension SortViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("indexPath: \(indexPath.row)")
         tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.passData(data: sortArr[indexPath.row])
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -64,7 +67,7 @@ extension SortViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.sortLabel.text = sortArr[indexPath.row]
+        cell.sortLabel.text = sortArr[indexPath.row].0
         
         self.tableView.tableFooterView = UIView()
         
