@@ -22,6 +22,8 @@ class NetworkRequest {
             fatalError("requestURL is nil")
         }
         
+        print("requestItem: \(requestUrl)")
+        
         var request = URLRequest(url: (requestUrl))
         request.httpMethod = "get"
         

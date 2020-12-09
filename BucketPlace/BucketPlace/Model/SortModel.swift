@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - 정렬 정보를 넘겨주기 위한 델리게이트
 protocol PassDataDelegate {
-    func passData(data: (String, (String, String)))
+    func passData(data: (String, (paramName: String, value: String)))
 }
 
 // MARK: - 정렬

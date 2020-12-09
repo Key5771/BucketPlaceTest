@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewController" customModule="BucketPlace" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="oK1-oy-EaL" id="QJ3-Y7-H27"/>
+                <outlet property="listCollectionView" destination="oK1-oy-EaL" id="QJ3-Y7-H27"/>
                 <outlet property="orderView" destination="rsB-0B-sUk" id="g24-a7-3Hc"/>
                 <outlet property="residenceView" destination="cb1-U0-8y3" id="eZq-Zw-9KR"/>
                 <outlet property="sortCollectionView" destination="bO3-2S-Ipv" id="kwG-zi-Mf4"/>

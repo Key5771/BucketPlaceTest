@@ -16,7 +16,7 @@ class SortCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        containerView.layer.cornerRadius = 18
+//        containerView.layer.cornerRadius = 18
     }
 
 }
