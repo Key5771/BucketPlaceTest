@@ -14,6 +14,8 @@
 		EA642AC5257F55E4002F8DE4 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA642AC3257F55E4002F8DE4 /* SortViewController.swift */; };
 		EA642AC6257F55E4002F8DE4 /* SortViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA642AC4257F55E4002F8DE4 /* SortViewController.xib */; };
 		EA642ACB257F70B2002F8DE4 /* SortModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA642ACA257F70B2002F8DE4 /* SortModel.swift */; };
+		EA642ADC2580B639002F8DE4 /* SortCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA642ADA2580B637002F8DE4 /* SortCollectionViewCell.swift */; };
+		EA642ADD2580B639002F8DE4 /* SortCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA642ADB2580B637002F8DE4 /* SortCollectionViewCell.xib */; };
 		EA648AD5257CB40900C29061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA648AD4257CB40900C29061 /* AppDelegate.swift */; };
 		EA648AD7257CB40900C29061 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA648AD6257CB40900C29061 /* SceneDelegate.swift */; };
 		EA648ADE257CB40D00C29061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA648ADD257CB40D00C29061 /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		EA642AC3257F55E4002F8DE4 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		EA642AC4257F55E4002F8DE4 /* SortViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortViewController.xib; sourceTree = "<group>"; };
 		EA642ACA257F70B2002F8DE4 /* SortModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortModel.swift; sourceTree = "<group>"; };
+		EA642ADA2580B637002F8DE4 /* SortCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollectionViewCell.swift; sourceTree = "<group>"; };
+		EA642ADB2580B637002F8DE4 /* SortCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortCollectionViewCell.xib; sourceTree = "<group>"; };
 		EA648AD1257CB40900C29061 /* BucketPlace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketPlace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA648AD4257CB40900C29061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA648AD6257CB40900C29061 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				EA648B12257CB47D00C29061 /* ListViewController.xib */,
 				EA648B30257CD26100C29061 /* ListCollectionViewCell.swift */,
 				EA648B31257CD26100C29061 /* ListCollectionViewCell.xib */,
+				EA642ADA2580B637002F8DE4 /* SortCollectionViewCell.swift */,
+				EA642ADB2580B637002F8DE4 /* SortCollectionViewCell.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 			files = (
 				EA642AAB257DF56D002F8DE4 /* ContentViewController.xib in Resources */,
 				EA648AE1257CB40D00C29061 /* LaunchScreen.storyboard in Resources */,
+				EA642ADD2580B639002F8DE4 /* SortCollectionViewCell.xib in Resources */,
 				EA648ADE257CB40D00C29061 /* Assets.xcassets in Resources */,
 				EA642AC6257F55E4002F8DE4 /* SortViewController.xib in Resources */,
 				EA648B33257CD26100C29061 /* ListCollectionViewCell.xib in Resources */,
@@ -353,6 +360,7 @@
 				EA648B20257CB6C900C29061 /* ListAPI.swift in Sources */,
 				EA648AD7257CB40900C29061 /* SceneDelegate.swift in Sources */,
 				EA642AAA257DF56D002F8DE4 /* ContentViewController.swift in Sources */,
+				EA642ADC2580B639002F8DE4 /* SortCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

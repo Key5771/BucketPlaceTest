@@ -15,7 +15,7 @@ class SortViewController: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     
     var sortTitle: String = ""
-    var sortArr: [(String, [String: String])] = []
+    var sortArr: [(String, (String, String))] = []
     var delegate: PassDataDelegate?
     var type: Any?
     

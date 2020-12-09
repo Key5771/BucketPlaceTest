@@ -12,11 +12,11 @@ class ListViewController: UIViewController {
     @IBOutlet weak var orderView: UIView!
     @IBOutlet weak var spaceView: UIView!
     @IBOutlet weak var residenceView: UIView!
+    @IBOutlet weak var sortCollectionView: UICollectionView!
     
     var baseUrl = "https://s3.ap-northeast-2.amazonaws.com/bucketplace-coding-test/cards/page_1.json"
     var contentInfo: [ListAPI] = []
-    var filterInfo: [(String, [String: String])] = []
-    let flowLayout = UICollectionViewFlowLayout()
+    var filterInfo: [(String, (String, String))] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,8 @@ class ListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
         print("filterInfo: \(filterInfo)")
+        
+        sortCollectionView.reloadData()
     }
     
     private func setupUI() {
@@ -45,7 +47,13 @@ class ListViewController: UIViewController {
         let nibName = UINib(nibName: "ListCollectionViewCell", bundle: nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: "ListCollectionViewItem")
         
-        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        
+        // sortCollectionView
+        sortCollectionView.delegate = self
+        sortCollectionView.dataSource = self
+        
+        let sortNibName = UINib(nibName: "SortCollectionViewCell", bundle: nil)
+        sortCollectionView.register(sortNibName, forCellWithReuseIdentifier: "sortNameItem")
         
         // sortButton View
         orderView.layer.cornerRadius = 4
@@ -92,53 +100,72 @@ class ListViewController: UIViewController {
 // MARK: - UICollectionViewDelegate
 extension ListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("indexPath: \(indexPath.row)")
-        
-        let viewController = ContentViewController()
-        let data = contentInfo[indexPath.row]
-        viewController.desc = data.description
-        viewController.imageUrl = data.image_url
-        viewController.modalPresentationStyle = .custom
-        self.present(viewController, animated: true, completion: nil)
+        if collectionView == sortCollectionView {
+            filterInfo.remove(at: indexPath.row)
+            sortCollectionView.reloadData()
+        } else {
+            print("indexPath: \(indexPath.row)")
+            
+            let viewController = ContentViewController()
+            let data = contentInfo[indexPath.row]
+            viewController.desc = data.description
+            viewController.imageUrl = data.image_url
+            viewController.modalPresentationStyle = .custom
+            self.present(viewController, animated: true, completion: nil)
+        }
     }
 }
 
 // MARK: - UICollectionViewDataSource
 extension ListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == sortCollectionView {
+            return filterInfo.count
+        }
         return contentInfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCollectionViewItem", for: indexPath) as? ListCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        
-        let infoData = contentInfo[indexPath.row]
-        
-        item.descriptionLabel.text = infoData.description
-        
-        guard var urlString = infoData.image_url else {
-            fatalError()
-        }
-        for _ in 0..<7 {
-            urlString.removeLast()
-        }
-        
-        urlString += "\(Int(self.collectionView.bounds.width))/"
-        urlString += "\(Int(self.collectionView.bounds.height / 2))"
-        
-        DispatchQueue.global().async {
-            guard let url = URL(string: urlString), let imageData = try? Data(contentsOf: url) else {
-                fatalError("imageURL is nil")
+        if collectionView == sortCollectionView {
+            guard let sortItem = collectionView.dequeueReusableCell(withReuseIdentifier: "sortNameItem", for: indexPath) as? SortCollectionViewCell else {
+                return UICollectionViewCell()
             }
             
-            DispatchQueue.main.async {
-                item.imageView.image = UIImage(data: imageData)
+            let filter = filterInfo[indexPath.row].0
+            
+            sortItem.sortNameLabel.text = filter
+            
+            return sortItem
+        } else {
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: "ListCollectionViewItem", for: indexPath) as? ListCollectionViewCell else {
+                return UICollectionViewCell()
             }
+            
+            let infoData = contentInfo[indexPath.row]
+            item.descriptionLabel.text = infoData.description
+            
+            guard var urlString = infoData.image_url else {
+                fatalError()
+            }
+            for _ in 0..<7 {
+                urlString.removeLast()
+            }
+            
+            urlString += "\(Int(self.view.bounds.width))/"
+            urlString += "\(Int(self.view.bounds.height / 2))"
+            
+            DispatchQueue.global().async {
+                guard let url = URL(string: urlString), let imageData = try? Data(contentsOf: url) else {
+                    fatalError("imageURL is nil")
+                }
+                
+                DispatchQueue.main.async {
+                    item.imageView.image = UIImage(data: imageData)
+                }
+            }
+            
+            return item
         }
-        
-        return item
     }
 }
 
@@ -165,9 +192,13 @@ extension ListViewController: UICollectionViewDataSourcePrefetching {
 // TODO: - 내용이 많은 경우 이미지가 양옆에서 떨어지는 현상 존재 => 이미지를 불러올 때 사이즈를 지정해주거나, 동적 Cell height를 통해 해결해야 할 듯.
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let sectionInset = flowLayout.sectionInset
-        let referenceHeight: CGFloat = 500
-        let referenceWidth = self.view.frame.width
+        if collectionView == sortCollectionView {
+            return CGSize(width: 80, height: 26)
+        }
+        
+        let sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let referenceHeight: CGFloat = collectionView.frame.height * 0.8
+        let referenceWidth = collectionView.frame.width
                     - sectionInset.left
                     - sectionInset.right
                     - collectionView.contentInset.left
@@ -178,19 +209,21 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
 
 extension ListViewController: PassDataDelegate {
     // order, space, residence에 해당하는 값 하나만을 갖기 위한 알고리즘.
-    func passData(data: (String, [String: String])) {
+    func passData(data: (String, (String, String))) {
         if !filterInfo.contains(where: { (result) -> Bool in
-            if result.1.keys != data.1.keys {
+            if result.1.0 != data.1.0 {
                 return false
             }
+            
             return true
         }) {
             filterInfo.append(data)
         } else {
             if let index = filterInfo.firstIndex(where: { (result) -> Bool in
-                if result.1.keys == data.1.keys {
+                if result.1.0 == data.1.0 {
                     return true
                 }
+                
                 return false
             }) {
                 filterInfo.remove(at: index)

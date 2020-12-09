@@ -14,6 +14,7 @@
                 <outlet property="collectionView" destination="oK1-oy-EaL" id="QJ3-Y7-H27"/>
                 <outlet property="orderView" destination="rsB-0B-sUk" id="g24-a7-3Hc"/>
                 <outlet property="residenceView" destination="cb1-U0-8y3" id="eZq-Zw-9KR"/>
+                <outlet property="sortCollectionView" destination="bO3-2S-Ipv" id="kwG-zi-Mf4"/>
                 <outlet property="spaceView" destination="ZTg-gR-yTD" id="d1z-ct-ylS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -169,9 +170,25 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-rL-72l">
                     <rect key="frame" x="0.0" y="94" width="414" height="40"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bO3-2S-Ipv">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YYG-zC-h2P">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
                     <color key="backgroundColor" red="0.20784313730000001" green="0.7725490196" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="bO3-2S-Ipv" firstAttribute="leading" secondItem="Bqb-rL-72l" secondAttribute="leading" id="1dT-uO-ayT"/>
                         <constraint firstAttribute="height" constant="40" id="8eN-B0-NoI"/>
+                        <constraint firstItem="bO3-2S-Ipv" firstAttribute="top" secondItem="Bqb-rL-72l" secondAttribute="top" id="F70-8X-Lcr"/>
+                        <constraint firstAttribute="bottom" secondItem="bO3-2S-Ipv" secondAttribute="bottom" id="T7t-9L-pet"/>
+                        <constraint firstAttribute="trailing" secondItem="bO3-2S-Ipv" secondAttribute="trailing" id="fVT-vR-zmL"/>
                     </constraints>
                 </view>
             </subviews>
