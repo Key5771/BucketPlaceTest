@@ -10,5 +10,5 @@
 ## [Preview]
 | 메인화면                    | 상세보기(portrait)                              | 상세보기(landscape)                              |
 |:------------------------------:|:---------------------------------:|:---------------------------------:|
-|![BucketPlaceMain](image/BucketPlaceMain.png)|![BucketPlaceContent_Portrait](./image/BucketPlaceContent_Portrait.png)|![BucketPlaceContent_Landscape](BucketPlaceContent_Landscape.png)|
+|![BucketPlaceMain](image/BucketPlaceMain.png)|![BucketPlaceContent_Portrait](./image/BucketPlaceContent_Portrait.png)|![BucketPlaceContent_Landscape](image/BucketPlaceContent_Landscape.png)|
 
