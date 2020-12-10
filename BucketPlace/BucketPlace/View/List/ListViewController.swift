@@ -34,7 +34,17 @@ class ListViewController: UIViewController {
         if !filterInfo.isEmpty {
             sortCollectionView.reloadData()
             loadData()
+            listCollectionView.reloadData()
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        self.listCollectionView.collectionViewLayout.invalidateLayout()
+        coordinator.animate(alongsideTransition: { _ in
+            self.listCollectionView.reloadData()
+        }, completion: nil)
     }
     
     private func setupUI() {
@@ -106,15 +116,6 @@ class ListViewController: UIViewController {
         }
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        self.listCollectionView.collectionViewLayout.invalidateLayout()
-        coordinator.animate(alongsideTransition: { _ in
-            self.listCollectionView.reloadData()
-        }, completion: nil)
-    }
-    
     @IBAction func orderAction(_ sender: Any) {
         let vc = SortViewController()
         
@@ -148,8 +149,6 @@ extension ListViewController: UICollectionViewDelegate {
             filterInfo.remove(at: indexPath.row)
             sortCollectionView.reloadData()
         } else {
-            print("indexPath: \(indexPath.row)")
-            
             let viewController = ContentViewController()
             let data = contentInfo[indexPath.row]
             viewController.desc = data.description
@@ -191,6 +190,9 @@ extension ListViewController: UICollectionViewDataSource {
             guard var urlString = infoData.image_url else {
                 fatalError()
             }
+            
+            // 이미지 데이터가 1:1이고 데이터타입으로 만들어 이미지를 보여주기 때문에 그때그때마다 사이즈 다르게 호출
+            // 좀 더 좋은 방법을 생각해봐야할 듯.
             for _ in 0..<7 {
                 urlString.removeLast()
             }

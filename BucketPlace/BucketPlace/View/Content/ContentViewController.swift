@@ -16,9 +16,6 @@ class ContentViewController: UIViewController {
     
     var imageUrl: String?
     var desc: String?
-//
-//    private var width = Int(UIScreen.main.bounds.width)
-//    private var height = Int(UIScreen.main.bounds.height)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +54,7 @@ class ContentViewController: UIViewController {
         let height = self.view.bounds.height
         
         // portrait mode
-        if width < height {
+        if UIDevice.current.orientation.isPortrait {
             let newHeight = width
             
             guard var urlString = imageUrl else { return }
@@ -106,6 +103,7 @@ class ContentViewController: UIViewController {
             }
         }
         
+        self.view.setNeedsLayout()
         self.view.layoutIfNeeded()
     }
     
